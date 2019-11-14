@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import com.deloitte.test.amazon.configuracion.Configuracion;
 import com.deloitte.test.amazon.page.home.AmazonFooter;
 import com.deloitte.test.amazon.page.home.AmazonHome;
+import com.deloitte.test.amazon.page.home.AmazonMail;
 import com.deloitte.test.amazon.page.home.AmazonSignIn;
 import com.deloitte.test.amazon.page.home.AmazonSearchResult;
 
@@ -16,14 +17,13 @@ public class Test1Amazon {
 		
 		LOGGER.log(Level.INFO, "Starting testcase 1");
 		Configuracion cnf = new Configuracion();
-		//JavascriptExecutor js = cnf.getJs();
-		WebDriver driver=cnf.getDriver();
+		WebDriver driver = cnf.getDriver();
 
+		AmazonFooter amaFt = new AmazonFooter(driver);
 		AmazonHome amaHome = new AmazonHome(driver);
-		AmazonSearchResult amaSearch = new AmazonSearchResult(driver);
 		AmazonSignIn amaSign = new AmazonSignIn(driver);
-	
-		//step 1: Click logIn button
+		AmazonMail amaMail = new AmazonMail(driver);
+		
 		amaHome.clickSignIn();
 		
 		//step 2: Fill email field
@@ -37,26 +37,25 @@ public class Test1Amazon {
 		
 		//step 5: Click on submit
 		amaSign.clickSubmit();
+		amaSign.clickContinue2();
 		
-		//step 6: Click on accept OTP
-		amaSign.clickContinue();
+		Thread.sleep(5000);
+		//amaSign.clickLog();
 		
-		//step 7: Wait for OTP code (manually)
-		Thread.sleep(20000);
-		
-		//step 8: Click accept
-		amaSign.clickLog(); 
-		
-		//step 9: Write "htc-vive" and click on search
+		amaMail.openMailHost();
+		amaMail.setEmail();
+		amaMail.clickContinue();
+		amaMail.setPassword();
+		amaMail.clickLogIn();
+//		amaMail.clickRefresh();
+		amaMail.clickRecentEmail();
+		String code = amaMail.getCode();
+		amaMail.changeTab();
+		amaSign.setOtp(code);
+		amaSign.clickLastFinish();
 		amaHome.findBar("htc-vive");
-		
-		//step 10: Filter results by brand "HTC" 
 		amaSearch.clickBrandFilter(1);
-		
-		//step 11: Click fourth product 
 		amaSearch.clickElement(4);
-		
-		//step 12: Get product description in console 
 		LOGGER.log(Level.INFO, amaSearch.getDescription());
 		LOGGER.log(Level.INFO, "Testcase 1 finished");
 		
