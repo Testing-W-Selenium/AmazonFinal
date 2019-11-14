@@ -14,14 +14,18 @@ public class AmazonSignIn{
 	@FindBy(
 			xpath="//input[@id='ap_email']"
 			)
+	
 	private WebElement emailInput;
+	
 	@FindBy(
 			xpath="//input[@id='ap_password']"
 			)
+	
 	private WebElement passwordInput;
 	public AmazonSignIn(WebDriver driver) {
 		this.driver = driver;
 	}
+	
 	public void inputEmail() {
 		driver.findElement(By.xpath("//input[@id='ap_email']")).sendKeys("gerrys.pizza@mail.ru");
 		//emailInput.sendKeys("boy.richy@mail.ru");
@@ -31,6 +35,7 @@ public class AmazonSignIn{
 	public void inputPassword() {
 		driver.findElement(By.xpath("//input[@id='ap_password']")).sendKeys("ofertonloco");	
 		//passwordInput.sendKeys("preppy14");
+
 	}
 	public void clickSubmit() {
 		driver.findElement(By.xpath("//input[@id='signInSubmit']")).click();
@@ -53,7 +58,6 @@ public void clickContinue2() {
 		
 	}
 	public void getFail() {
-		//System.out.println(a); Cambio
 		LOGGER.log(Level.INFO,driver.findElement(By.xpath("//div[@id='auth-error-message-box']//div[@class='a-box-inner a-alert-container']")).getText());
 	}
 	public void clickCreateAccount() {
@@ -70,7 +74,6 @@ public void clickContinue2() {
 	
 	public void registerForm()
 	{
-		 //jerrys update
 		List<WebElement> myElements = driver.findElements(By.xpath("//input[@id]"));
 		
 		myElements.get(0).sendKeys("Gerardo");
