@@ -23,18 +23,34 @@ public class AmazonSignIn{
 		this.driver = driver;
 	}
 	public void inputEmail() {
-//		driver.findElement(By.xpath("//input[@id='ap_email']")).sendKeys("proyecto.bk201@gmail.com");
-		emailInput.sendKeys("proyecto.bk201@gmail.com");
+		driver.findElement(By.xpath("//input[@id='ap_email']")).sendKeys("gerrys.pizza@mail.ru");
+		//emailInput.sendKeys("boy.richy@mail.ru");
 	}
+	
+	
 	public void inputPassword() {
-//		driver.findElement(By.xpath("//input[@id='ap_password']")).sendKeys("proyecto.bk201");	
-		passwordInput.sendKeys("proyecto.bk201");
+		driver.findElement(By.xpath("//input[@id='ap_password']")).sendKeys("ofertonloco");	
+		//passwordInput.sendKeys("preppy14");
 	}
 	public void clickSubmit() {
 		driver.findElement(By.xpath("//input[@id='signInSubmit']")).click();
 	}
+    public void clickLastFinish() {
+		
+		driver.findElement(By.xpath("//span[@id='a-autoid-0']//input[@class='a-button-input']")).click();
+		
+	}
 	public void clickContinue() {
+		
 		driver.findElement(By.xpath("//input[@id='continue']")).click();
+		
+	}
+	
+public void clickContinue2() {
+	driver.findElement(By.xpath("//input[@id='continue']")).click();
+		
+	driver.findElement(By.xpath("//*[@id=\"cvf-page-content\"]/div/div/div[1]/form/div[2]/input")).click();
+		
 	}
 	public void getFail() {
 		//System.out.println(a); Cambio
@@ -45,6 +61,11 @@ public class AmazonSignIn{
 	}
 	public void clickLog() {
 		driver.findElement(By.xpath("//*[@id=\"a-autoid-0\"]/span/input")).click();
+	}
+	
+	public void setOtp(String code) {
+		
+		driver.findElement(By.xpath("//*[@id=\"cvf-page-content\"]/div/div/div[1]/form/div[2]/input")).sendKeys(code);
 	}
 	
 	public void registerForm()
